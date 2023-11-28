@@ -25,6 +25,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lechinal/node-practice-01-fullstack-road/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.1.0"
   }
-  // "homepage": "https://github.com/lechinal/node-practice-01-fullstack-road#readme"
 }
