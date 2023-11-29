@@ -5,14 +5,16 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
     "mongoose": "^5.9.23",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "validator": "^13.11.0"
   },
   "scripts": {
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist -b master",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js"
   },
@@ -25,8 +27,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lechinal/node-practice-01-fullstack-road/issues"
-  },
-  "devDependencies": {
-    "gh-pages": "^6.1.0"
   }
 }
