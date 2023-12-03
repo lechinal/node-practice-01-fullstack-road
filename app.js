@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const authRoutes = require("./routes/authRoutes");
+const cookieParser = require("cookie-parser");
+const { requireAuth, checkUser } = require("./middleware/authMiddleware.js");
 
 const app = express();
 
@@ -12,6 +14,7 @@ app.use(express.static("public"));
 // pe a folosi static files ca .css, imagini, trebuie specificat fisierul in care se afla, in cazul nostru "public"
 
 app.use(express.json());
+app.use(cookieParser());
 
 // configurare mecanismul de vizualizare pt a utiliza EJS ca motor de sabloane:
 app.set("view engine", "ejs");
@@ -40,7 +43,8 @@ mongoose
   });
 
 // routes
+app.get("*", checkUser);
 app.get("/", (req, res) => res.render("home"));
-app.get("/paths", (req, res) => res.render("paths"));
-app.get("/next-paths", (req, res) => res.render("nextPaths"));
+app.get("/paths", requireAuth, (req, res) => res.render("paths"));
+app.get("/next-paths", requireAuth, (req, res) => res.render("nextPaths"));
 app.use(authRoutes);
